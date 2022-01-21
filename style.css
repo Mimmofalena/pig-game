@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-
+:root {
+  --primary: #107e7d;
+  --secondary: #044b7f;
+  --tertiary: #95190c;
+}
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +20,11 @@ body {
   font-weight: 400;
   height: 100vh;
   color: #333;
-  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  background-image: linear-gradient(
+    to top left,
+    var(--primary) 0%,
+    var(--secondary) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +67,7 @@ main {
 .score {
   font-size: 8rem;
   font-weight: 300;
-  color: #c7365f;
+  color: var(--tertiary);
   margin-bottom: auto;
 }
 
@@ -78,7 +86,7 @@ main {
 }
 
 .current {
-  background-color: #c7365f;
+  background-color: var(--tertiary);
   opacity: 0.8;
   border-radius: 9px;
   color: #fff;
@@ -169,3 +177,30 @@ main {
 .hidden {
   display: none;
 }
+
+@media only screen and (max-width: 746px) {
+  main {
+    flex-direction: column;
+    overflow: visible;
+    width: auto;
+    height: auto;
+  }
+  .btn {
+    padding: 0.5rem 2rem;
+  }
+  .btn--new {
+    top: 1rem;
+  }
+  .btn--roll {
+    top: 41rem;
+  }
+  .btn--hold {
+    top: 49rem;
+  }
+  .dice {
+    left: 85%;
+  }
+}
+
+/* next JOBS  */
+/* //MOVE DICE DOWN TO RESPECTIVE PLAYER WHEN PLAYING. */
