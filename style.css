@@ -182,23 +182,49 @@ main {
   main {
     flex-direction: column;
     overflow: visible;
-    width: auto;
+    width: 80%;
     height: auto;
   }
+  .name {
+    font-size: 3rem;
+  }
   .btn {
-    padding: 0.5rem 2rem;
+    width: fit-content;
+    background-color: white;
+    position: inherit;
   }
   .btn--new {
-    top: 1rem;
+    /* position: relative; */
+    top: -82rem;
   }
   .btn--roll {
-    top: 41rem;
+    /* position: relative; */
+
+    top: -3rem;
   }
   .btn--hold {
-    top: 49rem;
+    /* position: relative; */
+    top: -2rem;
   }
   .dice {
     left: 85%;
+    top: 37%;
+  }
+  .player {
+    padding: 5rem;
+  }
+  .current {
+    width: auto;
+  }
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 15rem;
+    background-color: var(--tertiary);
+    opacity: 0.8;
   }
 }
 
