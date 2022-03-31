@@ -25,6 +25,7 @@ body {
     var(--primary) 0%,
     var(--secondary) 100%
   );
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,9 +33,9 @@ body {
 
 /* LAYOUT */
 main {
-  position: relative;
-  width: 100rem;
-  height: 60rem;
+  /* position: relative; */
+  width: 90%;
+  height: 90%;
   background-color: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(200px);
   filter: blur();
@@ -42,11 +43,16 @@ main {
   border-radius: 9px;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .player {
-  flex: 50%;
-  padding: 9rem;
+  /* flex: 50%; */
+  /* height: 100%; */
+  width: 100%;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,17 +61,18 @@ main {
 
 /* ELEMENTS */
 .name {
-  position: relative;
-  font-size: 4rem;
+  /* position: relative; */
+  font-size: 2rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   word-spacing: 2px;
   font-weight: 300;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .score {
-  font-size: 8rem;
+  font-size: 5rem;
   font-weight: 300;
   color: var(--tertiary);
   margin-bottom: auto;
@@ -85,13 +92,44 @@ main {
   opacity: 1;
 }
 
+.container-middle {
+  /* background-color: #044b7f; */
+  width: 100%;
+  display: flex;
+
+  align-items: center;
+  /* padding: 0 1rem; */
+}
+.buttons-container {
+  height: fit-content;
+  min-width: 70%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+
+  /* margin: 2rem 0; */
+  /* margin: 0 auto; */
+}
+
+.buttons-container button:last-child {
+  margin-top: 2rem;
+  align-items: center;
+  background-color: black;
+  color: white;
+  font-weight: 800;
+  /* margin-bottom: 6rem; */
+  /* background-color: #044b7f; */
+}
+
 .current {
   background-color: var(--tertiary);
   opacity: 0.8;
   border-radius: 9px;
   color: #fff;
-  width: 65%;
-  padding: 2rem;
+  width: 50%;
+  /* padding: 2rem; */
   text-align: center;
   transition: all 0.75s;
 }
@@ -104,19 +142,24 @@ main {
 }
 
 .current-score {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
 }
 
 /* ABSOLUTE POSITIONED ELEMENTS */
 .btn {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  /* position: absolute; */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  /* width: 40%; */
+  text-align: center;
+  padding: 1rem 4rem;
+  margin-bottom: 0.5rem;
+  max-width: 60%;
   color: #444;
   background: none;
   border: none;
   font-family: inherit;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   cursor: pointer;
   font-weight: 400;
@@ -126,29 +169,30 @@ main {
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
 
-  padding: 0.7rem 2.5rem;
+  /* padding: 0.7rem 2.5rem; */
   border-radius: 50rem;
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
 }
 
 .btn::first-letter {
-  font-size: 2.4rem;
+  /* font-size: 2.4rem; */
   display: inline-block;
-  margin-right: 0.7rem;
+  /* margin-right: 0.7rem; */
 }
 
-.btn--new {
+/* .btn--new {
   top: 4rem;
 }
 .btn--roll {
   top: 39.3rem;
-}
-.btn--hold {
+} */
+/* .btn--hold {
   top: 46.1rem;
-}
+} */
 
 .btn:active {
-  transform: translate(-50%, 3px);
+  /* transform: translate(-50%, 3px); */
+  transform: scale(1.1);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
 }
 
@@ -156,11 +200,18 @@ main {
   outline: none;
 }
 
+.dice-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .dice {
-  position: absolute;
-  left: 50%;
-  top: 16.5rem;
-  transform: translateX(-50%);
+  /* position: absolute; */
+
+  /* left: 65%; */
+  /* top: 40%; */
+  /* transform: translateX(-50%); */
   height: 10rem;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
 }
@@ -178,13 +229,18 @@ main {
   display: none;
 }
 
-@media only screen and (max-width: 746px) {
+/* @media only screen and (max-width: 746px) {
   main {
     flex-direction: column;
-    overflow: visible;
+    overflow: hidden;
     width: 80%;
-    height: auto;
+    height: 95%;
   }
+  .section.player.play {
+    height: 100%;
+    width: 50%;
+  }
+
   .name {
     font-size: 3rem;
   }
@@ -194,17 +250,17 @@ main {
     position: inherit;
   }
   .btn--new {
-    /* position: relative; */
-    top: -82rem;
+    position: relative;
+    top: 0;
   }
   .btn--roll {
-    /* position: relative; */
+    position: relative;
 
-    top: -3rem;
+    top: -55%;
   }
   .btn--hold {
-    /* position: relative; */
-    top: -2rem;
+    position: relative;
+    top: -54%;
   }
   .dice {
     left: 85%;
@@ -226,7 +282,7 @@ main {
     background-color: var(--tertiary);
     opacity: 0.8;
   }
-}
+} */
 
 /* next JOBS  */
 /* //MOVE DICE DOWN TO RESPECTIVE PLAYER WHEN PLAYING. */
