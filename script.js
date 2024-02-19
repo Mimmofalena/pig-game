@@ -32,6 +32,8 @@ const init = function () {
   player1El.classList.remove('player--winner');
   player0El.classList.add('player--active');
   player1El.classList.remove('player--active');
+  player0El.querySelector('h2').textContent = 'PLAYER 1';
+  player1El.querySelector('h2').textContent = 'PLAYER 2';
 };
 init();
 
@@ -70,7 +72,6 @@ btnHold.addEventListener('click', function () {
   if (playing) {
     // 1. Add current score to active player's score
     scores[activePlayer] += currentScore;
-    // scores[1] = scores[1] + currentScore
 
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
@@ -80,10 +81,16 @@ btnHold.addEventListener('click', function () {
       // Finish the game
       playing = false;
       diceEl.classList.add('hidden');
-
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
+      console.log(activePlayer);
+
+      document
+        .querySelector('.player--winner')
+        .querySelector('h2').textContent = `Congratulations Player ${
+        activePlayer + 1
+      }`;
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
