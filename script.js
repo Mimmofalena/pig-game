@@ -86,9 +86,9 @@ btnRoll.addEventListener('click', function () {
         const activePlayerEl = document.querySelector(
           `.player--${activePlayer}`
         );
-        activePlayerEl.style.backgroundColor = 'rgba(245, 87, 108, 0.2)';
+        activePlayerEl.classList.add('player--flash');
         setTimeout(() => {
-          activePlayerEl.style.backgroundColor = '';
+          activePlayerEl.classList.remove('player--flash');
           switchPlayer();
         }, 300);
       }

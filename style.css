@@ -23,6 +23,11 @@
 
 html {
   font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 body {
@@ -113,6 +118,7 @@ main::before {
 .score {
   font-size: 4.5rem;
   font-weight: 700;
+  color: var(--primary);
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -321,6 +327,11 @@ main::before {
 
 .dice.rolling {
   animation: diceRoll 0.3s ease-in-out;
+}
+
+/* Rolled 1 Flash Effect */
+.player--flash {
+  background-color: rgba(245, 87, 108, 0.2);
 }
 
 /* Winner Styles */
