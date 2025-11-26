@@ -32,8 +32,8 @@ const init = function () {
   player1El.classList.remove('player--winner');
   player0El.classList.add('player--active');
   player1El.classList.remove('player--active');
-  player0El.querySelector('h2').textContent = 'PLAYER 1';
-  player1El.querySelector('h2').textContent = 'PLAYER 2';
+  player0El.querySelector('h2').textContent = 'Player 1';
+  player1El.querySelector('h2').textContent = 'Player 2';
 };
 init();
 
@@ -45,26 +45,54 @@ const switchPlayer = function () {
   player1El.classList.toggle('player--active');
 };
 
+// Animate score update
+const animateScore = function (element) {
+  element.style.transform = 'scale(1.2)';
+  setTimeout(() => {
+    element.style.transform = 'scale(1)';
+  }, 150);
+};
+
 // Rolling dice functionality
 btnRoll.addEventListener('click', function () {
   if (playing) {
-    // 1. Generating a random dice roll
-    const dice = Math.trunc(Math.random() * 6) + 1;
-
-    // 2. Display dice
+    // Add rolling animation
     diceEl.classList.remove('hidden');
-    diceEl.src = `dice-${dice}.png`;
+    diceEl.classList.add('rolling');
 
-    // 3. Check for rolled 1
-    if (dice !== 1) {
-      // Add dice to current score
-      currentScore += dice;
-      document.getElementById(`current--${activePlayer}`).textContent =
-        currentScore;
-    } else {
-      // Switch to next player
-      switchPlayer();
-    }
+    // Disable button during animation
+    btnRoll.disabled = true;
+
+    setTimeout(() => {
+      // 1. Generating a random dice roll
+      const dice = Math.trunc(Math.random() * 6) + 1;
+
+      // 2. Display dice
+      diceEl.classList.remove('rolling');
+      diceEl.src = `dice-${dice}.png`;
+
+      // Re-enable button
+      btnRoll.disabled = false;
+
+      // 3. Check for rolled 1
+      if (dice !== 1) {
+        // Add dice to current score
+        currentScore += dice;
+        const currentEl = document.getElementById(`current--${activePlayer}`);
+        currentEl.textContent = currentScore;
+        animateScore(currentEl);
+      } else {
+        // Flash effect before switching
+        const activePlayerEl = document.querySelector(
+          `.player--${activePlayer}`
+        );
+        activePlayerEl.classList.add('player--flash');
+        setTimeout(() => {
+          activePlayerEl.classList.remove('player--flash');
+          switchPlayer();
+        }, 300);
+      }
+    }, 300);
   }
 });
 
@@ -73,8 +101,9 @@ btnHold.addEventListener('click', function () {
     // 1. Add current score to active player's score
     scores[activePlayer] += currentScore;
 
-    document.getElementById(`score--${activePlayer}`).textContent =
-      scores[activePlayer];
+    const scoreEl = document.getElementById(`score--${activePlayer}`);
+    scoreEl.textContent = scores[activePlayer];
+    animateScore(scoreEl);
 
     // 2. Check if player's score is >= 100
     if (scores[activePlayer] >= 100) {
@@ -84,13 +113,10 @@ btnHold.addEventListener('click', function () {
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
-      console.log(activePlayer);
 
-      document
-        .querySelector('.player--winner')
-        .querySelector('h2').textContent = `Congratulations Player ${
-        activePlayer + 1
-      }`;
+      document.querySelector('.player--winner').querySelector(
+        'h2'
+      ).textContent = `🏆 Player ${activePlayer + 1} Wins! 🏆`;
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
